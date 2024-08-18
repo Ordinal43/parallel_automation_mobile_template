@@ -8,8 +8,7 @@ https://github.com/user-attachments/assets/8d8fa2f0-4fb2-46b9-b844-05807427f46b
 This project is a Java test automation framework made using **Appium**, **Cucumber**, and **JUnit**. It uses the Page
 Object Model (POM) design pattern for better test maintainability and readability.
 
-For parallel testing capabilities, this repo leverages the help of [Appium Device Farm](https://devicefarm.org/) plugin
-and [CourgetteJVM](https://github.com/prashant-ramcharan/courgette-jvm) library.
+For parallel testing capabilities, this repo leverages the help of [CourgetteJVM](https://github.com/prashant-ramcharan/courgette-jvm) library and [Appium Device Farm](https://devicefarm.org/) plugin for the Appium Server running separately.
 
 For now only runs Android automation tests (iOS is planned for later).
 
