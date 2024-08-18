@@ -25,3 +25,17 @@ dependencies {
     testImplementation 'io.qameta.allure:allure-cucumber7-jvm'
     testImplementation 'io.qameta.allure:allure-junit-platform'
 }
+
+tasks {
+    clean {
+        delete "${rootDir}/build"
+    }
+}
+
+tasks.register('runParallelTest', Test) {
+    group = "Automation"
+    description = "Run automation in parallel"
+    dependsOn clean, assemble, testClasses
+    include '**/utils/runners/CourgetteRunner.class'
+    systemProperties = System.getProperties() as Map<String, ?>
+}
