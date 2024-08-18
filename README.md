@@ -1,5 +1,10 @@
 # Parallel Mobile Automation Template Using Cucumber, Appium, and JUnit.
 
+
+
+https://github.com/user-attachments/assets/8d8fa2f0-4fb2-46b9-b844-05807427f46b
+
+
 This project is a Java test automation framework made using **Appium**, **Cucumber**, and **JUnit**. It uses the Page
 Object Model (POM) design pattern for better test maintainability and readability.
 
