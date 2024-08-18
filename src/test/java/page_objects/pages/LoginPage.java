@@ -2,6 +2,7 @@ package page_objects.pages;
 
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import page_objects.BasePage;
@@ -40,5 +41,10 @@ public class LoginPage extends BasePage {
 
     public boolean isSuccessLogin() {
         return isDisplayed(textSuccessLogin);
+    }
+
+    public boolean isErrorMessage(String message) {
+        By by = By.xpath(String.format("//*[@text='%s']", message));
+        return isDisplayed(getDriver().findElement(by));
     }
 }

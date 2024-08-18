@@ -29,5 +29,13 @@ public class LoginSteps implements En {
         });
 
         Then("I successfully login", () -> assertTrue(loginPage.isSuccessLogin()));
+
+        When("I input empty email", () -> loginPage.typeEmail(""));
+
+        When("I input empty password", () -> loginPage.typePassword(""));
+
+        When("I click submit login", loginPage::tapSubmitLogin);
+
+        Then("^I get error login \"([^\"]*)\"$", (String message) -> assertTrue(loginPage.isErrorMessage(message)));
     }
 }
