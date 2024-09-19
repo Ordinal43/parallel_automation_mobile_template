@@ -23,7 +23,7 @@ public class AppiumDriverInstance {
             caps.setCapability("hideKeyboard", true);
 
             try {
-                driver = new AppiumDriver(new URL("http://localhost:4723/wd/hub"), caps);
+                driver = new AppiumDriver(new URL(ENV("APPIUM_URL")), caps);
                 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
             } catch (MalformedURLException e) {
                 System.out.println("Appium Driver not started");

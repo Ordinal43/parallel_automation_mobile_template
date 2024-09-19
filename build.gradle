@@ -32,7 +32,7 @@ tasks {
     }
 }
 
-tasks.register('runParallelTest', Test) {
+tasks.register('runTest', Test) {
     group = "Automation"
     description = "Run automation in parallel"
     dependsOn clean, assemble, testClasses
