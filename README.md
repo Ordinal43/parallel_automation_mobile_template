@@ -9,7 +9,7 @@ For parallel testing capabilities, this repo leverages the help
 of [CourgetteJVM](https://github.com/prashant-ramcharan/courgette-jvm) library
 and [Appium Device Farm](https://devicefarm.org/) plugin for the Appium Server running separately.
 
-This repo also has a DockerFile for setting up JDK 17 and Allure reporter.
+This repo also has a DockerFile for setting up JDK 17 and Allure reporter which you can run your tests from.
 
 For now only runs Android automation tests (iOS is planned for later).
 
@@ -29,16 +29,15 @@ Before setting up the project, ensure you have the following installed:
 - [Node.js](https://nodejs.org/en/download/) (Required for Appium)
 - [Appium](http://appium.io/docs/en/about-appium/getting-started/)
     - [UiAutomator2 driver](https://appium.io/docs/en/2.3/quickstart/uiauto2-driver/)
-     ```bash
-    appium driver install uiautomator2
-    ```
-    - [Device Farm plugin](https://devicefarm.org/setup/#installation-server)
+      ```bash
+       appium driver install uiautomator2
+      ```
+    - [Device Farm plugin](https://devicefarm.org/setup/#installation-server) (To support parallel device assignment)
       ```bash
       appium plugin install --source=npm appium-device-farm
       ```
 - [Android SDK](https://developer.android.com/studio) (For Android testing)
     - Set up `ANDROID_HOME` environment variable to point to the directory where the Android SDK is installed.
-- [Allure Reporter](https://allurereport.org/docs/install/)
 
 ### If using Docker:
 
@@ -48,7 +47,8 @@ Before setting up the project, ensure you have the following installed:
 
 - [Java JDK 17 or higher](https://www.graalvm.org/release-notes/JDK_17/)
     - Set up `JAVA_HOME` environment variable to point to the JDK home directory
-- [Gradle](https://docs.gradle.org/current/userguide/installation.html) (No need to install locally.)
+- [Allure Reporter](https://allurereport.org/docs/install/)
+- Bash shell
 
 ## Project Structure
 
@@ -62,7 +62,8 @@ Parallel Automation
     ├── .env.example                        # Environment variables template
     ├── build.gradle                        # Build script for this Gradle project
     ├── build
-    │   ├── allure-results/                 # Allure report
+    │   ├── allure-results/                 # Raw report data
+    │   ├── allure-report/                  # Final HTML report
     │   └── cucumber.json                   # Cucumber JSON file
     │
     └── src
@@ -98,7 +99,7 @@ Parallel Automation
     cd your-repo-name
     ```
 2. **Wait for gradle to install its dependencies.**
-3. **Environment and Test Data variables setup
+3. **Environment and Test Data variables setup.**
     - There are 2 files named `.env.example` and `.test_data.example` (located in `src/test/resources/`)
     - Base both of your `.env` and `.test_data` files from here.
 4. **Appium setup**:
@@ -117,30 +118,29 @@ Parallel Automation
     ```
 4. After the image is built, run:
     ```bash
-    docker run -it --rm <name_of_your_image>
+    docker run -v $(pwd):/app -it --rm -p 4723:4723 <name_of_your_image>
     ```
-   This will open an interactive terminal inside your Docker container to run your tests from.
+   This will mount our working directory as a volume inside our Docker container with all proper dependencies installed.
 
 ## Running Tests
 
 To run the test on 1 parallel thread, run:
 
 ```bash
-./gradlew runTest
+bash run_test.sh
 ```
 
 To run the test on multiple parallel threads, run:
 
 ```bash
-./gradlew runTest -Dcourgette.threads="<NUMBER_OF_THREADS>"
+bash run_test.sh <NUMBER_OF_THREADS>
 ```
 
 You can also set the number of threads in `src/test/java/utils/runners/CourgetteRunner.java`.
 
 ## Reporting
 
-Test reports are automatically generated using Cucumber's built-in reporting. After test execution, you can find the
-reports in the `build` directory. Allure report and `cucumber.json` file are stored here.
+After test execution, you can find the reports in the `build/` folder. Allure reports and `cucumber.json` file are stored here.
 
 ## License
 

@@ -1,19 +1,11 @@
 FROM openjdk:17-jdk-slim
 
+ENV IS_USING_DOCKER=true
+
 # Install dependencies required for Gradle
 RUN apt-get update \
     && apt-get install -y wget default-jre-headless \
     && rm -rf /var/lib/apt/lists/*
-
-# Add Gradle to the PATH
-ENV GRADLE_HOME=/opt/gradle
-ENV PATH=$GRADLE_HOME/bin:$PATH
-
-# Copy Gradle build files separately for Docker layer caching
-COPY build.gradle settings.gradle /app/
-
-# Copy the rest of the application code
-COPY . /app/
 
 # Set environment variables
 ENV ALLURE_VERSION=2.30.0
