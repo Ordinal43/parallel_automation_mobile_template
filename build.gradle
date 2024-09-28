@@ -18,7 +18,7 @@ dependencies {
      - cucumber-junit
      - cucumber-testng
      */
-    testImplementation 'io.github.prashant-ramcharan:courgette-jvm:6.15.0'
+    testImplementation 'io.github.prashant-ramcharan:courgette-jvm:6.17.0'
     testImplementation 'io.appium:java-client:9.3.0'
     testImplementation 'io.github.cdimascio:dotenv-java:3.0.0'
     testImplementation platform('io.qameta.allure:allure-bom:2.28.1')
