@@ -64,6 +64,7 @@ Parallel Automation
     ├── .env                                # Environment variables (make your own locally)
     ├── .env.example                        # Environment variables template
     ├── build.gradle                        # Build script for this Gradle project
+    ├── run_test.sh                         # Bash script to run test and generate report
     ├── build
     │   ├── allure-results/                 # Raw report data
     │   ├── allure-report/                  # Final HTML report
