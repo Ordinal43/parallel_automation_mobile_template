@@ -35,7 +35,7 @@ tasks {
 tasks.register('runTest', Test) {
     group = "Automation"
     description = "Run automation in parallel"
-    dependsOn clean, assemble, testClasses
+    dependsOn assemble, testClasses
     include '**/utils/runners/CourgetteRunner.class'
     systemProperties = System.getProperties() as Map<String, ?>
 }
