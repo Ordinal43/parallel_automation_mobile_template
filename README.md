@@ -11,6 +11,9 @@ and [Appium Device Farm](https://devicefarm.org/) plugin for the Appium Server r
 
 This repo also has a DockerFile for setting up JDK 17 and Allure reporter which you can run your tests from.
 
+The scenarios on **Example.feature** file uses [WebdriverIO's sample app](https://github.com/webdriverio/native-demo-app/releases/). The app's download location
+will be used for the `APP_PATH` environment variable located in the **.env** file
+
 For now only runs Android automation tests (iOS is planned for later).
 
 ## Table of Contents
@@ -140,7 +143,8 @@ You can also set the number of threads in `src/test/java/utils/runners/Courgette
 
 ## Reporting
 
-After test execution, you can find the reports in the `build/` folder. Allure reports and `cucumber.json` file are stored here.
+After test execution, you can find the reports in the `build/` folder. Allure reports and `cucumber.json` file are
+stored here.
 
 ## License
 
