@@ -103,14 +103,20 @@ Parallel Automation
     cd your-repo-name
     ```
 2. **Wait for gradle to install its dependencies.**
-3. **Environment and Test Data variables setup.**
+3. **Appium setup**:
+   - Run Appium server with the proper plugins and flags as follows:
+     ```bash
+     appium server -pa /wd/hub/ --use-plugins=device-farm --plugin-device-farm-platform=android
+     ```
+4. **Environment and Test Data variables setup.**
     - There are 2 files named `.env.example` and `.test_data.example` (located in `src/test/resources/`)
     - Base both of your `.env` and `.test_data` files from here.
-4. **Appium setup**:
-    - Run Appium server with the proper plugins and flags as follows:
+    - Setting values:
       ```bash
-      appium server -pa /wd/hub/ --use-plugins=device-farm --plugin-device-farm-platform=android
+      APP_PATH=<path of your local app>
+      APPIUM_URL=<Make sure to use the non-localhost Appium URL!>
       ```
+5. If you're using Docker, follow the Docker setup steps after this.
 
 ### Docker setup (if you're running using Docker)
 
@@ -122,7 +128,7 @@ Parallel Automation
     ```
 4. After the image is built, run:
     ```bash
-    docker run -v $(pwd):/app -it --rm -p 4723:4723 <name_of_your_image>
+    docker run -v $(pwd):/app -it --rm <name_of_your_image>
     ```
    This will mount our working directory as a volume inside our Docker container with all proper dependencies installed.
 
